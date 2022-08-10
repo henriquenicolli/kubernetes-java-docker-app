@@ -1,37 +1,37 @@
 APP JAVA KUBERNETES DEPLOY
 
-CRIAR IMAGEM DOCKER
+	Sequencia de comandos para criar uma imagem docker, subir o cluster Kubernetes localmente usando minikube, por fim realizar um deploy de um app java no cluster Kubernetes.
 
-- docker build -t hnicolli/kubernetes:v1 .
+		CRIAR IMAGEM DOCKER
 
-
-MONTAR IMAGEM DOCKER
-
-- docker run -it -p 8080:8080 hnicolli/kubernetes:v1
+		- docker build -t hnicolli/kubernetes:v1 .
 
 
-Montar um cluster kubernetes local usando o minikube
+		MONTAR IMAGEM DOCKER
+		- docker run -it -p 8080:8080 hnicolli/kubernetes:v1
 
-https://kubernetes.io/docs/tasks/tools/install-minikube/.
 
-Subir o minikube
-- minikube start
-- eval $(minikube docker-env)
+		Montar um cluster kubernetes local usando o minikube
+		https://kubernetes.io/docs/tasks/tools/install-minikube/.
 
-Habilitar o dashboard do Kubernetes
-- minikube dashboard
+		Subir o minikube
+		- minikube start
+		- eval $(minikube docker-env)
 
-Criar um deployment
-- kubectl create deployment kubernetes --image=hnicolli/kubernetes:v1
+		Habilitar o dashboard do Kubernetes
+		- minikube dashboard
 
-Expoe o container criado
-- kubectl expose deployment kubernetes --type=LoadBalancer --port=8080
+		Criar um deployment
+		- kubectl create deployment kubernetes --image=hnicolli/kubernetes:v1
 
-Verifica o ip do conteiner criado
-- minikube service kubernetes
+		Expoe o container criado
+		- kubectl expose deployment kubernetes --type=LoadBalancer --port=8080
 
-Escalar o container
-- kubectl scale -n default deployment kubernetes --replicas=10
+		Verifica o ip do conteiner criado
+		- minikube service kubernetes
+
+		Escalar o container
+		- kubectl scale -n default deployment kubernetes --replicas=10
 
 
 
